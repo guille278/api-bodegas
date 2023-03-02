@@ -2,8 +2,7 @@
 
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\StorageController;
-use App\Http\Controllers\CategoryController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\api\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +22,6 @@ Route::prefix("/auth")->group(function () {
     Route::middleware("auth:sanctum")->get("/logout", [AuthController::class, "logout"]);
 });
 
-Route::get("/storages", [StorageController::class, "index"]);
 Route::get("/categories", [CategoryController::class, "index"]);
-Route::get("/storages/{category_id}", [StorageController::class, "find"]);
+Route::get("/storages/{id}", [StorageController::class, "find"]);
+Route::get("/storages/category/{category_id}", [StorageController::class, "findByCategory"]);

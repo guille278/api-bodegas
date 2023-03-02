@@ -4,7 +4,6 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Storage;
-use Illuminate\Http\Request;
 
 class StorageController extends Controller
 {
@@ -13,7 +12,12 @@ class StorageController extends Controller
         return Storage::with("images","services")->get();
     }
 
-    public function find($categoryId)
+    public function find($id)
+    {
+        return Storage::with("images","services")->find($id);
+    }
+
+    public function findByCategory($categoryId)
     {
         return Storage::with("images","services")->where('category_id', $categoryId)->get();
     }
