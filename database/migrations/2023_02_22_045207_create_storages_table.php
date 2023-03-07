@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer("m2");
             $table->timestamp("verified")->nullable();
             $table->string("address");
-            $table->boolean("available")->nullable();
+            $table->boolean("available")->default(true);
             $table->double("longitude")->nullable();
             $table->double("latitude")->nullable();
             $table->foreignId("user_id")->references("id")->on("users");
