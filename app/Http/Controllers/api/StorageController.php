@@ -9,16 +9,16 @@ class StorageController extends Controller
 {
     public function index()
     {
-        return Storage::with("images","services")->get();
+        return Storage::with("images","services")->where("available", true)->get();
     }
 
     public function find($id)
     {
-        return Storage::with("images","services")->find($id);
+        return Storage::with("images","services")->where("available", true)->find($id);
     }
 
     public function findByCategory($categoryId)
     {
-        return Storage::with("images","services")->where('category_id', $categoryId)->get();
+        return Storage::with("images","services")->where('category_id', $categoryId)->where("available", true)->get();
     }
 }
