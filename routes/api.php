@@ -3,6 +3,7 @@
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\StorageController;
 use App\Http\Controllers\api\CategoryController;
+use App\Http\Controllers\api\CheckoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +26,6 @@ Route::prefix("/auth")->group(function () {
 Route::get("/categories", [CategoryController::class, "index"]);
 Route::get("/storages/{id}", [StorageController::class, "find"]);
 Route::get("/storages/category/{category_id}", [StorageController::class, "findByCategory"]);
+
+Route::get("/checkout/{storage_id}/{plan_id}", [CheckoutController::class, "resume"]);
+Route::middleware("auth:sanctum")->post("/checkout", [CheckoutController::class, "checkout"]);

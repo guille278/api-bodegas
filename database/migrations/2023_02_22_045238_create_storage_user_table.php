@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('storage_user', function (Blueprint $table) {
+            $table->id();
             $table->foreignId("user_id")->references("id")->on("users");
             $table->foreignId("storage_id")->references("id")->on("storages");
             $table->float("total");
             $table->date("start_date");
             $table->date("end_date");
-            $table->timestamps();
         });
     }
 
