@@ -40,4 +40,39 @@ class AuthController extends Controller
             "success" => $request->user()->currentAccessToken()->delete()
         ]);
     }
+
+    public function register(Request $request)
+    {
+       
+    
+        $request->validate([
+            'name' => 'required',
+            'last_names' => 'required',
+            'email' => 'required|unique:users,email',
+            'password' => 'required',
+            'updated_at' => 'required|date',
+            'created_at' => 'required|date'
+        ]);
+    
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->last_names = $request->input('last_names');
+        $user->email = $request->input('email');
+        //$user->password = $request->input('password');
+        $user->password = Hash::make($request->input('password'));
+        $user->updated_at = now();
+        $user->created_at = now();
+        //$user->updated_at = $request->input('updated_at');
+        //$user->created_at = $request->input('created_at');
+        $user->save();
+    
+        $token = $user->createToken('auth_token')->plainTextToken;
+        //return response()->json(['message' => 'User registered successfully'], 201);
+        return response([
+            "success" => true,
+            "token" => $token,
+            "user" => $user
+        ], Response::HTTP_ACCEPTED);
+    
+    }
 }
