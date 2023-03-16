@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\api\BillingController;
 use App\Http\Controllers\api\StorageController;
 use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\api\CheckoutController;
@@ -29,3 +30,4 @@ Route::get("/storages/category/{category_id}", [StorageController::class, "findB
 
 Route::get("/checkout/{storage_id}/{plan_id}", [CheckoutController::class, "resume"]);
 Route::middleware("auth:sanctum")->post("/checkout", [CheckoutController::class, "checkout"]);
+Route::middleware("auth:sanctum")->get("/billing", [BillingController::class, "index"]);
