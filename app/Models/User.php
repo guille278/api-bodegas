@@ -37,6 +37,6 @@ class User extends Authenticatable
 
     public function contracts()
     {
-        return $this->belongsToMany(Storage::class)->withPivot(['start_date', 'end_date', 'total']);
+        return $this->belongsToMany(Storage::class)->orderByPivot("id", "DESC")->withPivot(['start_date', 'end_date', 'total']);
     }
 }
