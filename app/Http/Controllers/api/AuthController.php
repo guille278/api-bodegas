@@ -51,6 +51,11 @@ class AuthController extends Controller
             'last_names' => 'required',
             'email' => 'required|unique:users,email',
             'password' => 'required',
+            'verified' => 'required',
+            'address' => 'required',
+            'identification' => 'required',
+            'rfc' => 'required',
+            'phone' => 'required',
             'updated_at' => 'required|date',
             'created_at' => 'required|date'
         ]);
@@ -61,6 +66,11 @@ class AuthController extends Controller
         $user->email = $request->input('email');
         //$user->password = $request->input('password');
         $user->password = Hash::make($request->input('password'));
+        $user->verified = ' ';
+        $user->address = ' ';
+        $user->identification = ' ';
+        $user->rfc = ' ';
+        $user->phone = $request->input('phone');
         $user->updated_at = now();
         $user->created_at = now();
         //$user->updated_at = $request->input('updated_at');
