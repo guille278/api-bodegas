@@ -27,6 +27,7 @@ Route::prefix("/auth")->group(function () {
 
 Route::get("/categories", [CategoryController::class, "index"]);
 Route::get("/storages/{id}", [StorageController::class, "find"]);
+Route::get("/storageByUser/{user}", [StorageController::class, "storageByUser"]);
 Route::get("/storages/category/{category_id}", [StorageController::class, "findByCategory"]);
 
 Route::get("/checkout/{storage_id}/{plan_id}", [CheckoutController::class, "resume"]);

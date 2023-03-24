@@ -21,4 +21,15 @@ class StorageController extends Controller
     {
         return Storage::with("images","services")->where('category_id', $categoryId)->where("available", true)->get();
     }
+
+
+    public function storageByUser($user)
+    {
+
+        return Storage::with("images")->where("user_id", $user)->get();
+    }
+        //$user = User::find(Auth::user()->id);
+        //return $user->contracts;
+    
+
 }
